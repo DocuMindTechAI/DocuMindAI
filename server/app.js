@@ -22,10 +22,7 @@ const app = express();
 
 // —– MIDDLEWARE —–
 // Enable CORS untuk HTTP API
-app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    credentials: true
-}));
+app.use(cors());
 
 // —– SETUP SOCKET.IO —–
 const httpServer = createServer(app);
