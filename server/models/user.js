@@ -1,30 +1,16 @@
-<<<<<<< HEAD
 'use strict';
 const { Model } = require('sequelize');
-=======
-"use strict";
-const { Model } = require("sequelize");
->>>>>>> 70e84fc29e19955adac9ad2bb8c336f4e3f59744
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       User.hasMany(models.Document, {
-<<<<<<< HEAD
         foreignKey: 'userId',
         as: 'documents',
       });
       User.hasMany(models.ChatHistory, {
         foreignKey: 'userId',
         as: 'chatHistories',
-=======
-        foreignKey: "userId",
-        as: "documents",
-      });
-      User.hasMany(models.ChatHistory, {
-        foreignKey: "userId",
-        as: "chatHistories",
->>>>>>> 70e84fc29e19955adac9ad2bb8c336f4e3f59744
       });
     }
   }
@@ -65,11 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-<<<<<<< HEAD
       modelName: 'User',
-=======
-      modelName: "User",
->>>>>>> 70e84fc29e19955adac9ad2bb8c336f4e3f59744
     }
   );
 
