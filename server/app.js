@@ -216,7 +216,19 @@ io.on("connection", socket => {
     try {
         const env = process.env.NODE_ENV || "development";
         const dbConfig = config[env];
-        const sequelize = new Sequelize(dbConfig);
+        const sequelize = dbConfig.use_env_variable
+            ? new Sequelize(process.env[dbConfig.use_env_variable], {
+                dialect: 'postgres',
+                protocol: 'postgres',
+                dialectOptions: {
+                    ssl: {
+                        require: true,
+                        rejectUnauthorized: false
+                    }
+                }
+            })
+            : new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
+
         await sequelize.authenticate();
         console.log("✅ Database connected");
 
