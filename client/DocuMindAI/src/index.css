@@ -1,1 +1,148 @@
 @import "tailwindcss";
+
+/* Placeholder tiptap */
+.tiptap p.is-editor-empty::before {
+  content: attr(data-placeholder);
+  color: #9ca3af; /* tailwind gray-400 */
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* Character count */
+.character-count {
+  align-items: center;
+  color: var(--gray-5);
+  display: flex;
+  font-size: 0.75rem;
+  gap: 0.5rem;
+  margin: 1.5rem;
+
+  svg {
+    color: var(--purple);
+  }
+
+  &--warning,
+  &--warning svg {
+    color: var(--red);
+  }
+}
+.tiptap p.is-empty::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Collaboration */
+@layer base {
+  .tiptap {
+    @apply w-full;
+  }
+
+  .tiptap :first-child {
+    @apply mt-0;
+  }
+
+  .tiptap ul,
+  .tiptap ol {
+    @apply py-5 px-4 my-5 list-outside;
+  }
+
+  .tiptap ul li p,
+  .tiptap ol li p {
+    @apply my-1;
+  }
+
+  .tiptap h1,
+  .tiptap h2,
+  .tiptap h3,
+  .tiptap h4,
+  .tiptap h5,
+  .tiptap h6 {
+    @apply leading-tight mt-10 break-words;
+  }
+
+  .tiptap h1,
+  .tiptap h2 {
+    @apply mt-14 mb-6;
+  }
+
+  .tiptap h1 {
+    @apply text-2xl;
+  }
+
+  .tiptap h2 {
+    @apply text-xl;
+  }
+
+  .tiptap h3 {
+    @apply text-lg;
+  }
+
+  .tiptap h4,
+  .tiptap h5,
+  .tiptap h6 {
+    @apply text-base;
+  }
+
+  .tiptap code {
+    @apply bg-purple-100 rounded-md text-black text-sm px-1 py-0.5;
+  }
+
+  .tiptap pre {
+    @apply bg-black rounded-lg text-white font-mono my-6 p-3;
+  }
+
+  .tiptap pre code {
+    @apply bg-transparent text-inherit text-xs p-0;
+  }
+
+  .tiptap blockquote {
+    @apply border-l-4 border-gray-300 my-6 pl-4;
+  }
+
+  .tiptap hr {
+    @apply border-t border-gray-200 my-8;
+  }
+
+  .tiptap mark {
+    @apply bg-yellow-200 rounded-md px-1 py-0.5;
+  }
+
+  .tiptap ul[data-type="taskList"] {
+    @apply list-none m-0 p-0;
+  }
+
+  .tiptap ul[data-type="taskList"] li {
+    @apply flex items-start;
+  }
+
+  .tiptap ul[data-type="taskList"] li > label {
+    @apply flex-none mr-2 select-none;
+  }
+
+  .tiptap ul[data-type="taskList"] li > div {
+    @apply flex-1;
+  }
+
+  .tiptap ul[data-type="taskList"] input[type="checkbox"] {
+    @apply cursor-pointer;
+  }
+
+  .tiptap ul[data-type="taskList"] ul[data-type="taskList"] {
+    @apply m-0;
+  }
+
+  .tiptap p {
+    @apply break-all;
+  }
+
+  .collaboration-cursor__caret {
+    @apply border-l border-r border-black ml-[-1px] mr-[-1px] pointer-events-none relative;
+  }
+
+  .collaboration-cursor__label {
+    @apply absolute top-[-1.4em] left-[-1px] bg-white text-black text-xs font-semibold rounded-tl rounded-tr rounded-bl px-1 py-0.5 select-none whitespace-nowrap;
+  }
+}
