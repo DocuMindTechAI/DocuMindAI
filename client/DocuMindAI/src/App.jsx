@@ -1,12 +1,35 @@
-function App() {
+// src/App.jsx
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import ProtectedRoute from "./components/ProtectedRoute";
+import LoginPage from "./pages/LoginPage";
+import ListDocumentPage from "./pages/ListDocumentPage";
+import DetailDocumentPage from "./pages/DetailDocumentPage";
+import Profile from "./pages/Profile";
+import AppLayout from "./components/AppLayout";
+
+export default function App() {
   return (
-    <div>
-      <h1 class="text-4xl font-bold ">Hello world!</h1>
-      <button className="px-4 py-2 rounded bg-green-600 hover:bg-green-500 text-white">
-        Tes Tailwind
-      </button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* Public (anonymous) */}
+        <Route element={<ProtectedRoute anonymous />}>
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+
+        {/* Protected (needs login) */}
+        <Route element={<ProtectedRoute />}>
+          {/* Routes within AppLayout use Sidebar */}
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate to="/documents" replace />} />
+            <Route path="/documents" element={<ListDocumentPage />} />
+            <Route path="/documents/:id" element={<DetailDocumentPage />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+        </Route>
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
