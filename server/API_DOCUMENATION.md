@@ -5,7 +5,7 @@ This document outlines the API endpoints for the DocuMindAI application, a colla
 ## Base URL
 
 ```
-http://localhost:3000
+https://api.documind-ai.web.id
 ```
 
 ## List of Endpoints
