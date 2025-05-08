@@ -19,6 +19,7 @@ Key Features:
 - 📄 Automatic document summarization
 - 🔗 Document sharing with access level control
 - 🟢 Real-time editing with live presence indicators (e.g., typing status)
+- 📱 Responsive design for mobile, tablet, and desktop 
 
 ---
 
