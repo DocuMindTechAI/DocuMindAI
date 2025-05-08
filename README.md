@@ -24,8 +24,8 @@ Key Features:
 
 ## 🌐 Live URLs
 
-- **Client**: [https://plant.fadhalshulhan.com](https://plant.fadhalshulhan.com)  
-- **Server**: [https://plantplannerapi.fadhalshulhan.com](https://plantplannerapi.fadhalshulhan.com)
+- **Client**: [https://documind-ai.web.id](https://documind-ai.web.id)  
+- **Server**: [https://api.documind-ai.web.id](https://api.documind-ai.web.id)
 
 ---
 
