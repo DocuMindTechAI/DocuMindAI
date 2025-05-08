@@ -17,9 +17,7 @@ import Underline from "@tiptap/extension-underline";
 import FloatingToolbar from "../components/FloatingToolbar";
 import { useAuth } from "../context/AuthContext";
 
-const socket = io(import.meta.env.VITE_API_URL || "http://localhost:3000", {
-  withCredentials: true,
-});
+const socket = io(import.meta.env.VITE_API_URL || "http://localhost:3000");
 
 export default function DetailDocumentPage() {
   const { id } = useParams();

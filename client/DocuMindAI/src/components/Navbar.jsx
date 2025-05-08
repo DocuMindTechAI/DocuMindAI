@@ -37,6 +37,14 @@ export default function Navbar() {
     navigate("/login", { replace: true });
   };
 
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 11) return "Pagi";
+    if (hour < 15) return "Siang";
+    if (hour < 18) return "Sore";
+    return "Selamat malam";
+  };
+
   return (
     <header className="fixed top-0 inset-x-0 bg-gradient-to-r from-neutral-900 to-neutral-800 text-white shadow-lg z-50 px-6">
       <div className="flex justify-between h-16 items-center">
@@ -58,7 +66,7 @@ export default function Navbar() {
             >
               <span className="material-icons text-2xl">account_circle</span>
               <span className="font-medium">
-                {username ? username : "Guest"}
+                {getGreeting()}, {username ? username : "Guest"}
               </span>
             </button>
 
@@ -100,18 +108,12 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-neutral-800 mt-2 rounded-2xl shadow-lg transform opacity-0 translate-y-2 animate-slide-in">
+        <div className="md:hidden bg-neutral-800 mt-2 mb-8 rounded-2xl shadow-lg transform opacity-0 translate-y-2 animate-slide-in">
           <nav className="px-3 pt-3 pb-4 space-y-2">
             <div className="px-3 py-2 text-sm font-semibold text-gray-300 border-b border-neutral-700">
-              {username ? username : "Guest"}
+              {getGreeting()}, {username ? username : "Guest"}
             </div>
-            <NavLink
-              to="/documents/new"
-              onClick={() => setMenuOpen(false)}
-              className="block w-full text-left px-4 py-3 text-sm rounded-lg text-gray-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-500 hover:text-white transition-all duration-200"
-            >
-              New Document
-            </NavLink>
+
             <NavLink
               to="/profile"
               onClick={() => setMenuOpen(false)}

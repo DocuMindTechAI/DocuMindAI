@@ -5,7 +5,6 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const httpClient = axios.create({
     baseURL: API_URL,
-    withCredentials: true,          // aktifkan credential default
     headers: {
         "Content-Type": "application/json",
     },
