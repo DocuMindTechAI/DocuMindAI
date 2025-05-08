@@ -22,18 +22,14 @@ const app = express();
 
 // —– MIDDLEWARE —–
 // Enable CORS untuk HTTP API
-app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    credentials: true
-}));
+app.use(cors());
 
 // —– SETUP SOCKET.IO —–
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: process.env.CLIENT_URL || "http://localhost:5173",
+        origin: "*",
         methods: ["GET", "POST"],
-        credentials: true
     }
 });
 
@@ -216,7 +212,19 @@ io.on("connection", socket => {
     try {
         const env = process.env.NODE_ENV || "development";
         const dbConfig = config[env];
-        const sequelize = new Sequelize(dbConfig);
+        const sequelize = dbConfig.use_env_variable
+            ? new Sequelize(process.env[dbConfig.use_env_variable], {
+                dialect: 'postgres',
+                protocol: 'postgres',
+                dialectOptions: {
+                    ssl: {
+                        require: true,
+                        rejectUnauthorized: false
+                    }
+                }
+            })
+            : new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
+
         await sequelize.authenticate();
         console.log("✅ Database connected");
 

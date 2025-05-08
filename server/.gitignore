@@ -1,2 +1,5 @@
 .env
 node_modules
+.ecosystem.config.js.swp
+ecosystem.config.js
+nodesource_setup.sh

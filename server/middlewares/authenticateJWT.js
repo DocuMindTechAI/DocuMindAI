@@ -20,4 +20,4 @@ module.exports = function authenticateJWT(req, res, next) {
   } catch {
     return res.status(403).json({ message: "Invalid or expired token" });
   }
-};
+}

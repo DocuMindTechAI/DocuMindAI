@@ -2,6 +2,7 @@ const { User, DocumentShare } = require("../models");
 const { OAuth2Client } = require("google-auth-library");
 const jwt = require("jsonwebtoken");
 
+
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 class AuthController {
@@ -35,7 +36,7 @@ class AuthController {
 
         // Perbarui DocumentShare dengan userId pengguna baru
         const sharedDocs = await DocumentShare.findAll({
-          where: { email: user.email, userId: null },
+          where: { email: user.email, userId: null }
         });
         for (const docShare of sharedDocs) {
           await docShare.update({ userId: user.id });
@@ -50,8 +51,8 @@ class AuthController {
         user: {
           id: user.id,
           username: user.username,
-          email: user.email,
-        },
+          email: user.email
+        }
       });
     } catch (error) {
       console.error("!!! googleLogin error:", error);
@@ -62,7 +63,7 @@ class AuthController {
   static async getMe(req, res, next) {
     try {
       const user = await User.findByPk(req.user.id, {
-        attributes: ["id", "username", "email", "phoneNumber"],
+        attributes: ["id", "username", "email", "phoneNumber"]
       });
       if (!user) return res.status(404).json({ message: "User not found" });
       res.json(user);
