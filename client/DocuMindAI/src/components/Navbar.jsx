@@ -42,7 +42,7 @@ export default function Navbar() {
     if (hour < 11) return "Pagi";
     if (hour < 15) return "Siang";
     if (hour < 18) return "Sore";
-    return "Selamat malam";
+    return "Malam";
   };
 
   return (
